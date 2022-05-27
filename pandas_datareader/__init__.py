@@ -12,6 +12,7 @@ from .data import (
     get_data_famafrench,
     get_data_fred,
     get_data_moex,
+    get_data_msci,
     get_data_quandl,
     get_data_stooq,
     get_data_tiingo,

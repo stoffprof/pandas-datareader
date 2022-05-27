@@ -23,6 +23,7 @@ from pandas_datareader.iex.daily import IEXDailyReader
 from pandas_datareader.iex.deep import Deep as IEXDeep
 from pandas_datareader.iex.tops import LastReader as IEXLasts, TopsReader as IEXTops
 from pandas_datareader.moex import MoexReader
+from pandas_datareader.msci.msci import MSCIReader
 from pandas_datareader.nasdaq_trader import get_nasdaq_symbols
 from pandas_datareader.naver import NaverDailyReader
 from pandas_datareader.oecd import OECDReader
@@ -45,6 +46,7 @@ __all__ = [
     "get_data_famafrench",
     "get_data_fred",
     "get_data_moex",
+    "get_data_msci",
     "get_data_quandl",
     "get_data_yahoo",
     "get_data_yahoo_actions",
@@ -62,6 +64,10 @@ __all__ = [
     "get_data_stooq",
     "DataReader",
 ]
+
+
+def get_data_msci(*args, **kwargs):
+    return MSCIReader(*args, **kwargs).read()
 
 
 def get_data_alphavantage(*args, **kwargs):
@@ -486,7 +492,8 @@ def DataReader(
     elif data_source == "nasdaq":
         if name != "symbols":
             raise ValueError(
-                "Only the string 'symbols' is supported for " "Nasdaq, not %r" % (name,)
+                "Only the string 'symbols' is supported for " "Nasdaq, not %r" % (
+                    name,)
             )
         return get_nasdaq_symbols(retry_count=retry_count, pause=pause)
 
